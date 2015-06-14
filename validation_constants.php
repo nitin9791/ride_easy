@@ -1,0 +1,68 @@
+<?php
+        $validation_fields = array(
+            'NAME' =>  array('method' => array('notEmpty'=>true,'isName'=>true),'errors'=>array('notEmpty'=>'EPNAME','isName'=>'PROPNAME')),
+            'PASSWORD' =>  array('method' => array('notEmpty'=>true,'isPassword'=>true),'errors'=>array('notEmpty'=>'EPPASS','isPassword'=>'PROPPASS')),
+            'COMPANY_NAME' =>  array('method' => array('notEmpty'=>true),'errors'=>array('notEmpty'=>'EPCOMP')),
+            'EMAIL' =>  array('method' => array('notEmpty'=>true,'isEmail'=>true),'errors'=>array('notEmpty'=>'EPEMAIL','isEmail'=>'PROPEMAIL')),
+            'CONTACT' =>  array('method' => array('notEmpty'=>true,'isMobile'=>true),'errors'=>array('notEmpty'=>'EPMOB','isMobile'=>'PROPMOB')),
+            'HOME_ADDRESS' =>  array('method' => array('notEmpty'=>true),'errors'=>array('notEmpty'=>'EPADDR')),
+            'OFFICE_ADDRESS' =>  array('method' => array('notEmpty'=>true),'errors'=>array('notEmpty'=>'EPADDR')),
+            'START_TIME_PICKUP' => array('method' => array('notEmpty'=>true,'isTime'=>true),'errors'=>array('notEmpty'=>'EPTIME','isTime'=>'PROPTIME')),
+            'OFFICE_TIME_PICKUP' => array('method' => array('notEmpty'=>true,'isTime'=>true),'errors'=>array('notEmpty'=>'EPTIME','isTime'=>'PROPTIME')),
+            'OFFICE_TIME_DROP' => array('method' => array('notEmpty'=>false)),
+            'HAS_CAR' => array('method' => array('notEmpty'=>true,'isBoolean'=>true),'errors'=>array('notEmpty'=>'EPCAR','isBoolean'=>'PROPCAR' )),
+            'COUNTRY_CODE' =>  array('method' => array('notEmpty'=>true,'isCountryCode'=>true),'errors'=>array('notEmpty'=>'EPCC','isCountryCode'=>'PROPCC')),
+            'CITY' =>  array('method' => array('notEmpty'=>true,'isCity'=>true),'errors'=>array('notEmpty'=>'EPCITY','isCity'=>'PROPCITY')),
+            'PINCODE' =>  array('method' => array('notEmpty'=>true,'isPincode'=>true),'errors'=>array('notEmpty'=>'EPPIN','isPincode'=>'PROPPIN')),
+            'STATE' => array()
+        );
+        $errors = array(
+            'EPPASS'=>'Password should not be empty',
+            'EPNAME'=>'Name should not be empty',
+            'EPCOMP'=>'Company Name should not be empty',
+            'EPADDR' => 'Address should not be empty',
+            'EPCC' => 'Country Code should not be empty',
+            'EPCITY' => 'City should not be empty',
+            'EPPIN' => 'Pincode should not be empty',
+            'EPEMAIL' => 'Email should not be empty',
+            'EPMOB' => 'Mobile should not be empty',
+            'EPINFOR' => 'Details should not be empty',
+            'EPTIME' => 'Time should not be empty',
+            'EPCAR' => 'car status should not be empty',
+            'PROPTIME' => 'Not a proper time',
+            'PROPCAR' => 'Not a proper car status',
+            'PROPPASS' => 'Not a proper Password',
+            'PROPNAME' => 'Not a proper Name',
+            'PROPCC' => 'Not a proper Country Code',
+            'PROPCITY' => 'Not a proper City',
+            'PROPPIN' => 'Not a proper Pincode' ,
+            'PROPMOB' => 'Not a proper Mobile',
+            'PROPEMAIL'=> 'Not a proper Email',
+            
+            
+        );
+        $error_codes = array(
+            'EPPASS'=>1,
+            'EPNAME'=>1,
+            'EPCOMP'=>1,
+            'EPADDR' => 1,
+            'EPCC' => 1,
+            'EPCITY' => 1,
+            'EPPIN' => 1,
+            'EPEMAIL' =>1,
+            'EPMOB' => 1,
+            'EPINFOR' => 1,
+            'EPCAR' => 1,
+            'EPTIME' => 1,
+            'PROPCAR' => 2,
+            'PROPTIME' => 2,
+            'PROPPASS' => 2,
+            'PROPNAME' => 2,
+            'PROPCC' => 2,
+            'PROPCITY' =>2,
+            'PROPPIN' => 2 ,
+            'PROPMOB' => 2,
+            'PROPEMAIL'=> 2,
+        );
+        $profileInfo = array('NAME','PASSWORD','COMPANY_NAME','OFFICE_ADDRESS','HOME_ADDRESS','EMAIL','CONTACT','START_TIME_PICKUP','OFFICE_TIME_PICKUP','HAS_CAR');
+?>
