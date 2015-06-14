@@ -2,14 +2,14 @@
 
 /*Made By -Nitin Tiwari on 20-12-2014 
  */
-include_once('/var/www/myproject/CodeIgniter/application/controllers/BaseController.php');
-include_once('/var/www/myproject/CodeIgniter/application/libraries/registrationLib.php');
+include_once(APPPATH.'/controllers/BaseController.php');
+include_once(APPPATH.'/libraries/registrationLib.php');
 Class Registration extends BaseController{
     
     private $regLib;
     public function __construct() {
         parent::__construct();
-        $this->regLib = new registrationLib();
+	$this->regLib = new registrationLib();
     }
     public function index(){
         $result = $this->regLib->registerProfile($this->inputData);

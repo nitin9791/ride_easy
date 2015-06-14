@@ -3,8 +3,8 @@
 /* 
  * Made By Nitin Tiwari 20/12/2014
 */
-include_once('/var/www/myproject/CodeIgniter/application/libraries/Request.php');
-include_once('/var/www/myproject/CodeIgniter/application/libraries/Response.php');
+include_once(APPPATH.'/libraries/Request.php');
+include_once(APPPATH.'/libraries/Response.php');
 Class BaseController extends CI_Controller{
     
     public $inputData;
@@ -12,9 +12,9 @@ Class BaseController extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->_initialize();
-        $this->isIfValid = $this->processRequest();
-        $this->responseLib = new Response();
-        if(!$this->isIfValid){
+	$this->isIfValid = $this->processRequest();
+	$this->responseLib = new Response();
+	if(false && !$this->isIfValid){
             $data['error']['msg'] = 'Not a Valid Key';
             $data['error']['code'] = 3;
             echo json_encode($this->responseLib->createResponse($data));
@@ -48,7 +48,7 @@ Class BaseController extends CI_Controller{
     public function processRequest(){
         $request = new Request();
         $result = $request->processRequest($this->inputData);
-        unset($this->inputData);
+        unset($this->inputData['APIKEY']);
         return $result;
         
     }

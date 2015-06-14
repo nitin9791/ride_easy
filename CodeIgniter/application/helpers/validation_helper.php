@@ -74,4 +74,19 @@ function isMobile($val){
         return false;
     }
 }
+
+function isTime($val){
+	$time = explode(':',$val);
+	if(!empty($time)){
+		if(is_numeric($time[0]) && is_numeric($time[1]) && $time[0] >= 0 $time[1] <= 23 && $time[1] >=0 && $time[1] <= 59)
+			return true;
+	}
+	return false;
+}
+
+function isBoolean($val){
+	if($val =='0' || $val =='1' || $val ==true || $val == false)
+		return true;
+	return false;
+}
 ?>

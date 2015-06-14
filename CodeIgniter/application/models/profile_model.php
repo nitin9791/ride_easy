@@ -3,56 +3,56 @@
 /* 
  * created by Nitin Tiwari on 20/12/2014
  */
-include_once('/var/www/myproject/CodeIgniter/application/models/base_model.php');
-Class profile_model extends base_model{
+include_once(APPPATH.'/models/base_model.php');
+Class user_model extends base_model{
     
-    private $table = "ride.PROFILE";
-    private $profileId;
-    private $profileData;
+    private $table = "ride.USER";
+    private $user_id;
+    private $userData;
     public function __construct() {
         parent::__construct();
     }
 
     public function doRegistration($data){
         $this->setTableData($this->table, $data);
-        return $this->getProfileId($data);
+        return $this->getUserId($data);
     }
     
     public function updatePassword($password){
-        $where = 'PROFILEID =\''.  $this->profileId.'\'';
+        $where = 'USER_ID =\''.  $this->user_id.'\'';
         $set = array('PASSWORD' =>$password);
         return $this->updateTableData($this->table, $set,$where);
     }
     
-    public function getProfileId($data = ''){
-        if(empty($this->profileId)){
-            if(empty($this->profileData)){
-                $this->_setProfileData($data);
+    public function getUserId($data = ''){
+        if(empty($this->user_id)){
+            if(empty($this->userData)){
+                $this->_setUserData($data);
             }
-            $this->profileId = $this->profileData['PROFILEID'];
+            $this->user_id = $this->userData['USER_ID'];
         }
-        return $this->profileId;
+        return $this->user_id;
     }
     
-    public function getProfileData($data = ''){
-        if(empty($this->profileData)){
-            $this->_setProfileData($data);
+    public function getUserData($data = ''){
+        if(empty($this->userData)){
+            $this->_setUserData($data);
         }
-        return $this->profileData;
+        return $this->userData;
     }
     
-    private function _setProfileId($data){
-        $result = $this->getTableData($this->table,'PROFILEID','EMAIL=\''.$data['EMAIL'].'\'');
+    private function _setUserId($data){
+        $result = $this->getTableData($this->table,'USER_ID','EMAIL=\''.$data['EMAIL'].'\'');
         foreach($result as $row)
-            $this->profileId = $row->PROFILEID;
+            $this->user_id = $row->USER_ID;
     }
     
-    private function _setProfileData($data){
+    private function _setUserData($data){
        $result = $this->getTableData($this->table,'*','EMAIL=\''.$data['EMAIL'].'\'');
-       $fields = array('PROFILEID','PASSWORD','NAME','COMPANY_NAME','ADDRESS1','ADDRESS2','CITY','PINCODE','MOBILE','MOBILE2','EMAIL','ACTIVATED');
+       $fields = array('USER_ID','NAME','COMPANY_NAME','OFFICE_ADDRESS','HOME_ADDRESS','CONTACT','EMAIL','IS_ACTIVE','HAS_CAR','START_TIME_PICKUP','OFFICE_TIME_PICKUP');
         foreach($result as $row){
             foreach($fields as $key){
-                $this->profileData[$key] = $row->$key;
+                $this->userData[$key] = $row->$key;
             }
         } 
         return true;

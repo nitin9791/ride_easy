@@ -5,17 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include_once('/var/www/myproject/CodeIgniter/application/libraries/validationLib.php');
-include_once('/var/www/myproject/CodeIgniter/application/libraries/loginLib.php');
+include_once(APPPATH.'/libraries/validationLib.php');
 class registrationLib {
     
     private $validate,$CI,$profile_model,$password,$profileid,$login;
     public function __construct() {
-        $this->validate = new validationLib();
-        $this->login = new loginLib();
+	$this->validate = new validationLib();
         $this->CI = &get_instance();
-        $this->CI->load->model('profile_model');
-        $this->profile_model = $this->CI->profile_model;
+        $this->CI->load->model('user_model');
+        $this->user_model = $this->CI->user_model;
     }
     
     public function registerProfile($inputData){
@@ -31,23 +29,22 @@ class registrationLib {
             return $errors;
         }
         else{
-            return true;
+            return $this->user_model->getUserData();
         }
     }
     private function _saveOnDB($inputData){
         $password = $inputData['PASSWORD'];
         unset($inputData['PASSWORD']);
-        unset($inputData['PASSWORD_CONFIRM']);
-        $this->profileid = $this->profile_model->doRegistration($inputData);
-        if($this->profileid == false)
+        $this->user_id = $this->user_model->doRegistration($inputData);
+        if($this->user_id == false)
             return false;
         $salt = "N1tin@ndR0h@n";
-        $this->password = md5($this->profileid.$salt.$password);
-        return $this->profile_model->updatePassword($this->password);
+        $this->password = md5($this->user_id.$salt.$password);
+        return $this->user_model->updatePassword($this->password);
     }
     
     public function setOtherFields(&$inputData){
-        $inputData['ACTIVATED'] = 'Y';
+       	$inputData['IS_ACTIVE'] = 'Y';
         $inputData['REGISTER_DATE'] = 'NOW()';
     }
 }

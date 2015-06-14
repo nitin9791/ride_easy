@@ -5,10 +5,10 @@
  * Date -2 June 2015
 *******************************************************************/
 
-include_once('/var/www/myproject/CodeIgniter/application/models/base_model.php');
+include_once(APPPATH.'/models/base_model.php');
 Class  request_api extends base_model {
     
-    private $table = "ride.REQUEST";
+    private $table = "ride.REQUESTAPI";
     public function __construct() {
         parent::__construct();
     }
